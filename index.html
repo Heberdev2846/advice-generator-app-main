@@ -4,86 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet" />
-  <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="index.js">
+  <link rel="stylesheet" href="styles.css">
+
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
   <title>Frontend Mentor | Advice generator app</title>
 
-  <style>
-    html {
-      font-family: "Manrope";
-      background: hsl(218, 23%, 16%);
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .card {
-      background-color: hsl(217, 19%, 24%);
-      text-align: center;
-      border-radius: 10px;
-      width: 100%; 
-      max-width: 500px; 
-      min-height: 100px;
-      padding: 20px; 
-      box-sizing: border-box; 
-    }
-    h1 {
-      color: hsl(150, 100%, 66%);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      padding-top: 10px; 
-    }
-    p {
-      padding: 10px;
-      color: hsl(193, 38%, 86%);
-      font-size: 20px;
-      font-weight: 800;
-    }
-    .linea {
-      width: 100%; 
-      max-width: 300px; 
-      height: auto; 
-      margin: 10px 0; 
-    }
-    .circulo {
-      background-color: hsl(150, 100%, 66%);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin: 0 auto;
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      cursor: pointer;
-    }
-    .dado {
-      width: 18px;
-    }
-    .circulo:hover {
-    background-color: hsl(150, 100%, 66%); /* Verde flúor */
-    box-shadow: 0 0 30px hsl(150, 100%, 66%); /* Sombra trasera verde flúor */
-    }
-  </style>
+  
 </head>
 <body>
   <div class="card">
     <h1 class="advice-number">ADVICE #1</h1>
     <p>
-      "No lo hagas por tí, hazlo por mí!"
+      "El éxito no es final, el fracaso no es fatal: es el coraje para continuar lo que cuenta.",
     </p>
     <img class="linea" src="./images/pattern-divider-desktop.svg" />
     <div class="circulo">
       <img class="dado" src="./images/icon-dice.svg" alt="" />
     </div>
+    <button class="toggle-button">Aleatorio</button>
+
   </div>
   <script>
     const messages = [
-      "El éxito no es final, el fracaso no es fatal: es el coraje para continuar lo que cuenta.",
       "Si puedes soñarlo, puedes lograrlo.",
       "El único límite para nuestras realizaciones de mañana está en nuestras dudas de hoy.",
       "No te avergüences de tus fracasos, aprende de ellos y comienza de nuevo.",
@@ -96,25 +41,52 @@
       "El hombre valiente no es el que no siente miedo, sino el que conquista ese miedo.",
       "La felicidad es el resultado de una actitud interna, no de circunstancias externas.",
       "No te quejes de la vida, no has nacido para quejas, sino para una lucha viril.",
-      "La verdadera riqueza es no necesitar más."
-      
-      // Agrega más mensajes aquí
+      "La verdadera riqueza es no necesitar más.",
+      "No es la carga lo que te derriba, sino cómo la llevas.",
+      "La mente es lo que hace que todo sea real.",
+      "La vida es como una obra de teatro: no es la duración, sino la excelencia de los actores lo que importa.",
+      "El mayor obstáculo para vivir es la espera, que espera el mañana y desperdicia el día de hoy.",
+      "Donde quiera que hay una persona que haya encontrado paz en sí misma, ha encontrado a Dios.",
+      "La ira, aunque bien dirigida, a menudo descubre más de lo que debe.",
+      "Ninguna cosa es mejor para el hombre que tener la mente en paz con uno mismo.",
+      "Si quieres ser amado, ama.",
+      "La fortuna favorece a los valientes.",
+      "No aspires a cosas imposibles; aspira a lo que está a tu alcance."
+     
     ];
-
-    let adviceNumber = 1; // El número inicial del consejo
+    
+    let currentIndex = 0;
 
     const circuloBtn = document.querySelector('.circulo');
-    circuloBtn.addEventListener('click', () => {
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      const randomMessage = messages[randomIndex];
-      const adviceElement = document.querySelector('.card p');
-      adviceElement.textContent = `"${randomMessage}"`;
+    const toggleButton = document.querySelector('.toggle-button');
+    const adviceElement = document.querySelector('.card p');
+    const adviceNumberElement = document.querySelector('.advice-number');
 
-      // Actualizar el número del consejo
-      const adviceNumberElement = document.querySelector('.advice-number');
-      adviceNumberElement.textContent = `ADVICE #${adviceNumber}`;
-      
-      adviceNumber = adviceNumber % messages.length + 1;
+
+    function showCurrentMessage() {
+      adviceElement.textContent = `"${messages[currentIndex]}"`;
+      adviceNumberElement.textContent = `ADVICE #${currentIndex + 1}`;
+    }
+
+
+    circuloBtn.addEventListener('click', () => {
+      if (toggleButton.textContent === 'No aleatorio') {
+        currentIndex = (currentIndex + 1) % messages.length;
+        showCurrentMessage();
+      } else {
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        adviceElement.textContent = `"${messages[randomIndex]}"`;
+        adviceNumberElement.textContent = `ADVICE #${randomIndex + 1}`;
+      }
+    });
+
+
+    toggleButton.addEventListener('click', () => {
+      if (toggleButton.textContent === 'No aleatorio') {
+        toggleButton.textContent = 'Aleatorio';
+      } else {
+        toggleButton.textContent = 'No aleatorio';
+      }
     });
   </script>
 </body>

@@ -1,0 +1,68 @@
+
+    html {
+      font-family: "Manrope";
+      background: hsl(218, 23%, 16%);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background-color: hsl(217, 19%, 24%);
+      text-align: center;
+      border-radius: 10px;
+      width: 100%; 
+      max-width: 500px; 
+      min-height: 100px;
+      padding: 20px; 
+      box-sizing: border-box; 
+    }
+    h1 {
+      color: hsl(150, 100%, 66%);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      padding-top: 10px; 
+    }
+    p {
+      padding: 10px;
+      color: hsl(193, 38%, 86%);
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .linea {
+      width: 100%; 
+      max-width: 300px; 
+      height: auto; 
+      margin: 10px 0; 
+    }
+    .circulo {
+      background-color: hsl(150, 100%, 66%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+    }
+    .dado {
+      width: 18px;
+    }
+    .circulo:hover {
+      background-color: hsl(150, 100%, 66%);
+      box-shadow: 0 0 30px hsl(150, 100%, 66%); 
+    }
+    .toggle-button {
+      background-color: hsl(150, 100%, 66%);
+      transition: all 0.5s ease;
+      border-radius: 5px;
+      border-style: solid;
+      border-color: hsl(150, 100%, 66%);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+    }
