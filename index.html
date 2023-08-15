@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet" />
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+
+  <title>Frontend Mentor | Advice generator app</title>
+
+  <style>
+    html {
+      font-family: "Manrope";
+      background: hsl(218, 23%, 16%);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background-color: hsl(217, 19%, 24%);
+      text-align: center;
+      border-radius: 10px;
+      width: 100%; 
+      max-width: 500px; 
+      min-height: 100px;
+      padding: 20px; 
+      box-sizing: border-box; 
+    }
+    h1 {
+      color: hsl(150, 100%, 66%);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      padding-top: 10px; 
+    }
+    p {
+      padding: 10px;
+      color: hsl(193, 38%, 86%);
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .linea {
+      width: 100%; 
+      max-width: 300px; 
+      height: auto; 
+      margin: 10px 0; 
+    }
+    .circulo {
+      background-color: hsl(150, 100%, 66%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+    }
+    .dado {
+      width: 18px;
+    }
+    .circulo:hover {
+    background-color: hsl(150, 100%, 66%); /* Verde flúor */
+    box-shadow: 0 0 30px hsl(150, 100%, 66%); /* Sombra trasera verde flúor */
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="advice-number">ADVICE #1</h1>
+    <p>
+      "No lo hagas por tí, hazlo por mí!"
+    </p>
+    <img class="linea" src="./images/pattern-divider-desktop.svg" />
+    <div class="circulo">
+      <img class="dado" src="./images/icon-dice.svg" alt="" />
+    </div>
+  </div>
+  <script>
+    const messages = [
+      "El éxito no es final, el fracaso no es fatal: es el coraje para continuar lo que cuenta.",
+      "Si puedes soñarlo, puedes lograrlo.",
+      "El único límite para nuestras realizaciones de mañana está en nuestras dudas de hoy.",
+      "No te avergüences de tus fracasos, aprende de ellos y comienza de nuevo.",
+      "No es porque las cosas son difíciles que no nos atrevemos, es porque no nos atrevemos que son difíciles.", 
+      "La vida no es corta, sino que nosotros la hacemos así. No somos incapaces de vivir mucho, sino que malgastamos una gran parte de ella.",
+      "No hay viento favorable para el barco que no sabe a dónde va.",
+      "No juzgues cada día por la cosecha que obtienes, sino por las semillas que plantas.",
+      "Nunca consideres el estudio como un deber, sino como una oportunidad para penetrar en el hermoso y maravilloso mundo del saber.",
+      "Mientras vivimos, debemos ser buenos.",
+      "El hombre valiente no es el que no siente miedo, sino el que conquista ese miedo.",
+      "La felicidad es el resultado de una actitud interna, no de circunstancias externas.",
+      "No te quejes de la vida, no has nacido para quejas, sino para una lucha viril.",
+      "La verdadera riqueza es no necesitar más."
+      
+      // Agrega más mensajes aquí
+    ];
+
+    let adviceNumber = 1; // El número inicial del consejo
+
+    const circuloBtn = document.querySelector('.circulo');
+    circuloBtn.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      const randomMessage = messages[randomIndex];
+      const adviceElement = document.querySelector('.card p');
+      adviceElement.textContent = `"${randomMessage}"`;
+
+      // Actualizar el número del consejo
+      const adviceNumberElement = document.querySelector('.advice-number');
+      adviceNumberElement.textContent = `ADVICE #${adviceNumber}`;
+      
+      adviceNumber = adviceNumber % messages.length + 1;
+    });
+  </script>
+</body>
+</html>
